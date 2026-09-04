@@ -1,0 +1,15 @@
+luci-app-airoha-npu
+Copyright 2026 Ryan Chen
+
+This product includes software originally developed by
+Ryan Chen (https://github.com/rchen14b/luci-app-airoha-npu).
+
+Modifications:
+Copyright 2026 Danfocus
+- Adapted for Nokia XG-040G-MD and Nokia XG-040G-MF (non-Wi-Fi XGS-PON ONTs)
+- Removed wireless offload monitoring (mt76 token_info and station dumps)
+- Added real-time SoC/CPU temperature monitoring with passive cooling thresholds
+- Adapted Frame Engine GDM/CDM port mapping for 10G XGS-PON optical WAN and internal switch LAN
+- Added safe devmem register access and caching for NPU reserved memory regions
+- Relocated HW Offload calculation and dynamic progress bar to PPE Engines (P4 + P8) with active load thresholding
+- Refactored QDMA1 and QDMA2 cards to display pure host CPU network stack DMA statistics (CPU RX, CPU TX, Drop counters)
