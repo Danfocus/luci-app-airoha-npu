@@ -22,7 +22,11 @@ get_status() {
 
 	local npu_ver="Unknown"
 	if [ -n "$npu_fw" ] && [ -f "$npu_fw" ]; then
-		npu_ver=$(strings "$npu_fw" 2>/dev/null | grep -oE '([0-9]+\.[0-9]+\.[0-9]+-)?TLB[0-9.]+[-_v0-9]*' | head -1)
+		if command -v strings > /dev/null 2>&1; then
+			npu_ver=$(strings "$npu_fw" 2>/dev/null | grep -oE '([0-9]+\.[0-9]+\.[0-9]+-)?TLB[0-9.]+[-_v0-9]*' | head -1)
+		else
+			npu_ver=$(grep -aoE '([0-9]+\.[0-9]+\.[0-9]+-)?TLB[0-9.]+[-_v0-9]*' "$npu_fw" 2>/dev/null | head -1)
+		fi
 		[ -z "$npu_ver" ] && npu_ver="Unknown"
 	fi
 
